@@ -1,33 +1,82 @@
-# Project
+# MCP Weather Server
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
+A simple Model Context Protocol (MCP) server that provides real-time weather data to AI agents like GitHub Copilot.
 
-As the maintainer of this project, please make a few updates:
+## Quick Start
 
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
+Clone the repository:
 
-## Contributing
+```bash
+git clone https://github.com/microsoft/lets-learn-mcp-javascript.git
+cd mcp-weather-server
+```
 
-This project welcomes contributions and suggestions.  Most contributions require you to agree to a
-Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit [Contributor License Agreements](https://cla.opensource.microsoft.com).
+### 1. Install Dependencies
 
-When you submit a pull request, a CLA bot will automatically determine whether you need to provide
-a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions
-provided by the bot. You will only need to do this once across all repos using our CLA.
+```bash
+npm install
+```
 
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
-contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+### 2. Run the Server
 
-## Trademarks
+Test with MCP Inspector:
 
-This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft
-trademarks or logos is subject to and must follow
-[Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/legal/intellectualproperty/trademarks/usage/general).
-Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship.
-Any use of third-party trademarks or logos are subject to those third-party's policies.
+```bash
+npx -y @modelcontextprotocol/inspector npx -y tsx main.ts
+```
+
+### 3. Use with VS Code
+
+1. Open the `mcp.json`file in `.vscode` folder
+2. Click the start server button above line 4
+3. Open Chat mode and select agent and choose a modal that supports MCPs such as Claude Sonnet
+4. Type or speak into the chat and ask it what the weather is like in your city
+
+## Features
+
+- 🌤️ Real-time weather data for any city
+- 🌍 No API key required (uses Open-Meteo)
+- 🤖 Works with GitHub Copilot and other MCP-compatible AI tools
+- ⚡ Easy to test with MCP Inspector
+
+## Usage Examples
+
+Ask GitHub Copilot:
+- "What's the weather like in Tokyo?"
+- "How's the weather in London today?"
+- "Give me the current weather for Paris"
+
+## How It Works
+
+The server provides a `get-weather` tool that:
+1. Converts city names to coordinates using geocoding
+2. Fetches current weather data from Open-Meteo API
+3. Returns structured data that AI agents can format beautifully
+
+## Code Structure
+
+```typescript
+// Creates MCP server with weather tool
+const server = new McpServer({
+  name: "Weather Server",
+  version: "1.0.0"
+});
+
+// Defines the get-weather tool
+server.tool('get-weather', 'Tool to get the weather of a city', ...);
+
+// Connects via stdio transport
+const transport = new StdioServerTransport();
+server.connect(transport);
+```
+
+## Dependencies
+
+- `@modelcontextprotocol/sdk` - MCP server framework
+- `zod` - Schema validation
+- `tsx` - TypeScript execution (for development)
+
+## API Used
+
+- [Open-Meteo](https://open-meteo.com/) - Free weather API with no authentication required
+
