@@ -156,6 +156,8 @@ Use the [geocoding endpoint](https://open-meteo.com/en/docs/geocoding-api) to ge
 
 Replace the static city name with `${city}` using template literals.
 
+Then return our data as JSON and extract the latitude and longitude from the first result.
+
 Include error handling to notify the AI agent if the city doesn't exist.
 ```ts
 //...
@@ -166,6 +168,8 @@ async({ city }) => {
           `https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=10&language=en&format=json`
         );
         const data = await response.json();
+
+        const { latitude, longitude } = data.results[0];
 
         if (data.results.length === 0) { {
           return {
