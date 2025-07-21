@@ -1,4 +1,4 @@
-# Connecting MCP Server to VS Code**  
+# Connecting MCP Server to VS Code  
 
 **Step 1: Register the Server**  
 #### Register the Server
