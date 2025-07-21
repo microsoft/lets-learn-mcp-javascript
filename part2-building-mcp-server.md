@@ -209,7 +209,7 @@ Let's select the current weather and include - temperature
 Let's select just today's data. Then, down below, we can find our endpoint which we can copy into our code.
 
 
-Back in VS Code, we will modify our `get-weather` tool to include the real weather data:
+Back in VS Code:
 
 - Create a new fetch to our API and store it as `weatherResponse`. 
 - To call the correct city we need to use the latitude and longitude we obtained earlier from our data. 
