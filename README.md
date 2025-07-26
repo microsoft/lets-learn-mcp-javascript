@@ -2,6 +2,10 @@
 
 A simple Model Context Protocol (MCP) server that provides real-time weather data to AI agents like GitHub Copilot.
 
+<a href="https://glama.ai/mcp/servers/@microsoft/lets-learn-mcp-javascript">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/@microsoft/lets-learn-mcp-javascript/badge" alt="Weather Server MCP server" />
+</a>
+
 ## Quick Start
 
 Clone the repository:
@@ -79,4 +83,3 @@ server.connect(transport);
 ## API Used
 
 - [Open-Meteo](https://open-meteo.com/) - Free weather API with no authentication required
-
