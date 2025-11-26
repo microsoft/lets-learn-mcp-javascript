@@ -8,7 +8,7 @@ Clone the repository:
 
 ```bash
 git clone https://github.com/microsoft/lets-learn-mcp-javascript.git
-cd mcp-weather-server
+cd lets-learn-mcp-javascript
 ```
 
 ### 1. Install Dependencies
